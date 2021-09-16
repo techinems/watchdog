@@ -1,0 +1,8 @@
+node_modules/
+.git/
+.drone.yml
+.env.example
+.eslintrc.json
+.gitignore
+LICENSE
+README.md
