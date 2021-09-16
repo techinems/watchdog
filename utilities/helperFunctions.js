@@ -32,7 +32,7 @@ const isModerator = async (user) => {
 };
 
 const processMessage = async ({ text, user, ts, channel }) => {
-  if (MONITORED_CHANNELS.includes(channel) && !isModerator(user)) {
+  if (MONITORED_CHANNELS.includes(channel) && (await isModerator(user))) {
     deleteMessage({
       token: USER_TOKEN,
       channel: channel,
