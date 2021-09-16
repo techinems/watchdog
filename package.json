@@ -1,25 +1,26 @@
 {
-  "name": "slack-node-template",
-  "version": "0.0.0",
-  "description": "slack-node-template",
-  "main": "index.js",
+  "name": "watchdog",
+  "version": "0.0.1",
+  "description": "A Slack integration to keep announcement channels free of clutter",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rpiambulance/<REPO>.git"
+    "url": "git+https://github.com/rpiambulance/watchdog.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rpiambulance/<REPO>/issues"
+    "url": "https://github.com/rpiambulance/watchdog/issues"
   },
-  "homepage": "https://github.com/rpiambulance/<REPO>#readme",
+  "homepage": "https://github.com/rpiambulance/watchdog#readme",
   "devDependencies": {
     "eslint": "^6.5.1"
   },
   "dependencies": {
+    "@slack/bolt": "^3.6.0",
     "dotenv": "^8.1.0"
   }
 }

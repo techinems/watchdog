@@ -1,4 +1,4 @@
-slack-node-template
+watchdog
 ===================
 
 Template to start off the next greatest Slack Integration.
