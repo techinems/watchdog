@@ -8,7 +8,7 @@ const {
       chat: { delete: deleteMessage, postEphemeral },
     },
   },
-} = require("../utilities/bolt.js");
+} = require("./bolt.js");
 
 //globals
 const TOKEN = process.env.SLACK_BOT_TOKEN;

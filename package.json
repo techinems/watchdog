@@ -2,9 +2,11 @@
   "name": "watchdog",
   "version": "0.0.1",
   "description": "A Slack integration to keep announcement channels free of clutter",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
@@ -17,10 +19,10 @@
   },
   "homepage": "https://github.com/rpiambulance/watchdog#readme",
   "devDependencies": {
-    "eslint": "^6.5.1"
+    "eslint": "^7.3.2"
   },
   "dependencies": {
     "@slack/bolt": "^3.6.0",
-    "dotenv": "^8.1.0"
+    "dotenv": "^10.0.0"
   }
 }
