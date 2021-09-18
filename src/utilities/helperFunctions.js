@@ -32,7 +32,7 @@ const isModerator = async (user) => {
 };
 
 const processMessage = async ({ text, user, ts, channel }) => {
-  if (MONITORED_CHANNELS.includes(channel) && (await isModerator(user))) {
+  if (MONITORED_CHANNELS.includes(channel) && (await !isModerator(user))) {
     deleteMessage({
       token: USER_TOKEN,
       channel: channel,
@@ -41,14 +41,22 @@ const processMessage = async ({ text, user, ts, channel }) => {
     return postEphemeral({
       token: TOKEN,
       channel: channel,
-      text: "Sorry! You're not an admin or a moderator, so you cannot post in this channel.",
+      text:
+        "Sorry! You're not an admin or a moderator, " +
+        "so you cannot post in this channel.",
       user: user,
       blocks: [
         {
           type: "section",
           text: {
             type: "mrkdwn",
-            text: "Sorry! You're not an admin or a moderator, so you're not allowed to post a message in this channel. If you feel it's important, trying posting in another channel better suited for questions. You can also contact an officer directly for more assistance.\n\nWe apologize we had to delete your message, but for your reference, here's what you sent:",
+            text:
+              "Sorry! You're not an admin or a moderator, " +
+              "so you're not allowed to post a message in this channel. " +
+              "If you feel it's important, trying posting in another channel " +
+              "better suited for questions. You can also contact an officer " +
+              "directly for more assistance.\n\nWe apologize we had to delete " +
+              "your message, but for your reference, here's what you sent:",
           },
         },
         {
