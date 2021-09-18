@@ -26,12 +26,16 @@ const isNotModerator = async (user) => {
     token: TOKEN,
     usergroup: ADMIN_USERGROUP_ID,
   });
-  if (adminUsers.includes(user)) return false;
+  if (adminUsers.includes(user)) {
+    return false;
+  }
   const { users: modUsers } = await list({
     token: TOKEN,
     usergroup: MOD_USERGROUP_ID,
   });
-  if (modUsers.includes(user)) return false;
+  if (modUsers.includes(user)) {
+    return false;
+  }
   return true;
 };
 
