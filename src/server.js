@@ -6,6 +6,8 @@ const { app } = require("./utilities/bolt.js");
 const { processMessage } = require("./utilities/helperFunctions.js");
 
 //globals
+
+//for dev
 let DEV;
 if (process.env.ENVIRONMENT && process.env.ENVIRONMENT == "dev") {
   DEV = true;
@@ -13,9 +15,9 @@ if (process.env.ENVIRONMENT && process.env.ENVIRONMENT == "dev") {
   DEV = false;
 }
 
-app.message(async ({ message }) => {
+app.message(({ message, message: { subtype } }) => {
   if (DEV) {
     console.log(message);
   }
-  await processMessage(message);
+  if (subtype != "message_deleted") processMessage(message);
 });
