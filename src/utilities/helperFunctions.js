@@ -17,13 +17,9 @@ const MOD_USERGROUP_ID = process.env.MOD_USERGROUP_ID;
 const ADMIN_USERGROUP_ID = process.env.ADMIN_USERGROUP_ID;
 const MONITORED_CHANNELS = process.env.MONITORED_CHANNELS.split(",");
 
-//for dev
-let DEV;
-if (process.env.ENVIRONMENT && process.env.ENVIRONMENT == "dev") {
-  DEV = true;
-} else {
-  DEV = false;
-}
+const isDev = () => {
+  return process.env.ENVIRONMENT && process.env.ENVIRONMENT == "dev";
+};
 
 const isNotModerator = async (user) => {
   const { users: adminUsers } = await list({
@@ -41,7 +37,7 @@ const isNotModerator = async (user) => {
 
 const processMessage = async ({ text, user, ts, channel }) => {
   if (MONITORED_CHANNELS.includes(channel) && (await isNotModerator(user))) {
-    if (DEV) {
+    if (isDev()) {
       console.log(
         `text: ${text}\nuser: ${user}\nts: ${ts}\nchannel: ${channel}\n`
       );
@@ -84,4 +80,4 @@ const processMessage = async ({ text, user, ts, channel }) => {
   }
 };
 
-module.exports = { processMessage };
+module.exports = { isDev, processMessage };
