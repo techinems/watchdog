@@ -17,22 +17,35 @@ const MOD_USERGROUP_ID = process.env.MOD_USERGROUP_ID;
 const ADMIN_USERGROUP_ID = process.env.ADMIN_USERGROUP_ID;
 const MONITORED_CHANNELS = process.env.MONITORED_CHANNELS.split(",");
 
-const isModerator = async (user) => {
+const isDev = () => {
+  return process.env.ENVIRONMENT && process.env.ENVIRONMENT == "dev";
+};
+
+const isNotModerator = async (user) => {
   const { users: adminUsers } = await list({
     token: TOKEN,
     usergroup: ADMIN_USERGROUP_ID,
   });
-  if (adminUsers.includes(user)) return true;
+  if (adminUsers.includes(user)) {
+    return false;
+  }
   const { users: modUsers } = await list({
     token: TOKEN,
     usergroup: MOD_USERGROUP_ID,
   });
-  if (modUsers.includes(user)) return true;
-  return false;
+  if (modUsers.includes(user)) {
+    return false;
+  }
+  return true;
 };
 
 const processMessage = async ({ text, user, ts, channel }) => {
-  if (MONITORED_CHANNELS.includes(channel) && (await !isModerator(user))) {
+  if (MONITORED_CHANNELS.includes(channel) && (await isNotModerator(user))) {
+    if (isDev()) {
+      console.log(
+        `text: ${text}\nuser: ${user}\nts: ${ts}\nchannel: ${channel}\n`
+      );
+    }
     deleteMessage({
       token: USER_TOKEN,
       channel: channel,
@@ -71,4 +84,4 @@ const processMessage = async ({ text, user, ts, channel }) => {
   }
 };
 
-module.exports = { processMessage };
+module.exports = { isDev, processMessage };

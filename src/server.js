@@ -3,8 +3,15 @@ require("dotenv").config();
 
 //local packages
 const { app } = require("./utilities/bolt.js");
-const { processMessage } = require("./utilities/helperFunctions.js");
+const { isDev, processMessage } = require("./utilities/helperFunctions.js");
 
-app.message(async ({ message }) => {
-  await processMessage(message);
+//globals
+
+app.message(({ message, message: { subtype } }) => {
+  if (isDev()) {
+    console.log(message);
+  }
+  if (subtype != "message_deleted") {
+    processMessage(message);
+  }
 });
