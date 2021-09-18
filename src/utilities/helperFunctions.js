@@ -16,11 +16,6 @@ const USER_TOKEN = process.env.SLACK_USER_TOKEN;
 const MOD_USERGROUP_ID = process.env.MOD_USERGROUP_ID;
 const ADMIN_USERGROUP_ID = process.env.ADMIN_USERGROUP_ID;
 const MONITORED_CHANNELS = process.env.MONITORED_CHANNELS.split(",");
-if (process.env.ENVIRONMENT && process.env.ENVIRONMENT == "dev") {
-  const DEV = true;
-} else {
-  const DEV = false;
-}
 
 const isModerator = async (user) => {
   const { users: adminUsers } = await list({
