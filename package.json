@@ -1,6 +1,6 @@
 {
   "name": "watchdog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Slack integration to keep announcement channels free of clutter",
   "main": "src/server.js",
   "scripts": {
