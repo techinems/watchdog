@@ -11,7 +11,7 @@ app.message(({ message, message: { subtype } }) => {
   if (isDev()) {
     console.log(message);
   }
-  if (subtype != "message_deleted") {
+  if (subtype != "message_deleted" || subtype != "message_replied") {
     processMessage(message);
   }
 });

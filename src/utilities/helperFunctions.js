@@ -39,8 +39,8 @@ const isNotModerator = async (user) => {
   return true;
 };
 
-const processMessage = async ({ text=null, user=null, ts, channel, subtype=null }) => {
-  if (MONITORED_CHANNELS.includes(channel) && (await isNotModerator(user)) && !subtype && subtype != "message_replied") {
+const processMessage = async ({ text, user, ts, channel }) => {
+  if (MONITORED_CHANNELS.includes(channel) && (await isNotModerator(user))) {
     if (isDev()) {
       console.log(
         `text: ${text}\nuser: ${user}\nts: ${ts}\nchannel: ${channel}\n`
