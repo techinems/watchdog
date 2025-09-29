@@ -7,12 +7,11 @@ const { isDev, processMessage } = require("./utilities/helperFunctions.js");
 
 //globals
 
-app.message(({ message, message: { subtype } }) => {
-  console.log(message)
+app.message(({ message, message: { thread_ts=null, subtype } }) => {
   if (isDev()) {
     console.log(message);
   }
-  if (subtype != "message_deleted" && subtype != "message_replied") {
+  if (subtype != "message_deleted" && !thread_ts) {
     processMessage(message);
   }
 });
