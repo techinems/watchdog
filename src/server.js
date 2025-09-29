@@ -8,6 +8,7 @@ const { isDev, processMessage } = require("./utilities/helperFunctions.js");
 //globals
 
 app.message(({ message, message: { subtype } }) => {
+  console.log(message)
   if (isDev()) {
     console.log(message);
   }
