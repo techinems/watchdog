@@ -1,8 +1,11 @@
 node_modules/
 .git/
-.drone.yml
+.env
 .env.example
-.eslintrc.json
 .gitignore
 LICENSE
 README.md
+eslint.config.js
+scripts/
+test/
+.github/
